@@ -28,6 +28,16 @@ def test_task1_type_printed(capsys):
     assert "str" in captured.out, "Expected 'str' to be printed"
 
 
+def test_task1_type_verification(capsys):
+    """Task 1: Verify type str is shown"""
+    if 'task1' in sys.modules:
+        del sys.modules['task1']
+    import task1
+    importlib.reload(task1)
+    captured = capsys.readouterr()
+    assert "str" in captured.out
+
+
 def test_task1_result_correct(capsys):
     """Task 1: Check that '250' is printed"""
     if 'task1' in sys.modules:
@@ -36,6 +46,16 @@ def test_task1_result_correct(capsys):
     importlib.reload(task1)
     captured = capsys.readouterr()
     assert "250" in captured.out, "Expected '250' to be printed"
+
+
+def test_task1_result_appears(capsys):
+    """Task 1: Verify result 250 appears in output"""
+    if 'task1' in sys.modules:
+        del sys.modules['task1']
+    import task1
+    importlib.reload(task1)
+    captured = capsys.readouterr()
+    assert "250" in captured.out
 
 
 # Task 2: Float Conversion Tests
@@ -59,6 +79,16 @@ def test_task2_type_printed(capsys):
     assert "str" in captured.out, "Expected 'str' to be printed"
 
 
+def test_task2_type_verification(capsys):
+    """Task 2: Verify type str is shown"""
+    if 'task2' in sys.modules:
+        del sys.modules['task2']
+    import task2
+    importlib.reload(task2)
+    captured = capsys.readouterr()
+    assert "str" in captured.out
+
+
 def test_task2_total_correct(capsys):
     """Task 2: Check that '24.99' is printed"""
     if 'task2' in sys.modules:
@@ -67,6 +97,16 @@ def test_task2_total_correct(capsys):
     importlib.reload(task2)
     captured = capsys.readouterr()
     assert "24.99" in captured.out, "Expected '24.99' to be printed"
+
+
+def test_task2_total_appears(capsys):
+    """Task 2: Verify total 24.99 appears in output"""
+    if 'task2' in sys.modules:
+        del sys.modules['task2']
+    import task2
+    importlib.reload(task2)
+    captured = capsys.readouterr()
+    assert "24.99" in captured.out
 
 
 # Task 3: Type Conversion Variable Tests
@@ -126,13 +166,13 @@ def test_task3_f_is_float():
 
 # Task 4: Boolean Challenge (Extra Credit)
 def test_task4_uses_bool_with_string():
-    """Task 4: Check that bool() is called with a string argument"""
+    """Task 4: Check that bool() is called with an empty string or whitespace"""
     import re
     with open('task4.py', 'r') as f:
         code = f.read()
-    # Pattern matches bool("...") or bool('...') with optional whitespace
-    pattern = r'bool\s*\(\s*["\'][^"\']*["\']\s*\)'
-    assert re.search(pattern, code), "Must use bool() with a string argument, e.g., bool(\"\")"
+    # Pattern matches bool("") or bool(" ") or bool("   ") - only whitespace between quotes
+    pattern = r'bool\s*\(\s*["\']\s*["\']\s*\)'
+    assert re.search(pattern, code), "Must use bool() with an empty string or only whitespace, e.g., bool(\"\")"
 
 
 def test_task4_found_false(capsys):
