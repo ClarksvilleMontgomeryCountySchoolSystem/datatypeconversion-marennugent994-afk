@@ -16,6 +16,7 @@ print(type(b))
 # c
 print(c)
 print(type(c))
+c = int(c)
 
 # d
 print(d)
@@ -30,5 +31,4 @@ print(type(e))
 print(f)
 print(type(f))
 f = float(f)
-
 
